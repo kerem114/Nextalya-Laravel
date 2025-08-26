@@ -1,40 +1,53 @@
-<div class="p-1 sidebar_right_home" wire:init="loadUsers">
+<div class="p-0" wire:init="loadUsers">
     @foreach($this->users as $user)
-        <div class="d-flex align-items-center mb-3" wire:key="user-{{ $user->id }}">
-            <img src="{{ asset('storage/' . $user->avatar) }}"
-                 class="rounded-circle me-2 profile-img-sm" alt="{{ $user->username }}">
-            <div class="flex-grow-1">
-                <a href="{{ route('user.account', $user->username) }}">
-                   <p class="text-dark"> {{ $user->username }}</p>
+        <div class="card-enhanced p-3 mb-3 hover-lift-enhanced animate-fade-in" wire:key="user-{{ $user->id }}">
+            <div class="d-flex align-items-center">
+                <a href="{{ route('user.account', $user->username) }}" class="text-decoration-none">
+                    <img src="{{ asset('storage/' . $user->avatar) }}"
+                         class="rounded-circle me-3" style="width: 48px; height: 48px; object-fit: cover;" alt="{{ $user->username }}">
                 </a>
-                <div class="small text-muted">
-                    @if(auth()->user()->isFollowedBy($user))
-                        <span class="text-success">Seni takip ediyor</span>
-                    @elseif($user->created_at->diffInDays() < 7)
-                        Yeni Katıldı
+                <div class="flex-grow-1">
+                    <a href="{{ route('user.account', $user->username) }}" class="text-decoration-none">
+                        <h6 class="mb-1 fw-semibold">{{ $user->name }}</h6>
+                        <p class="text-muted small mb-1">{{ '@' . $user->username }}</p>
+                    </a>
+                    <div class="small">
+                        @if(auth()->user()->isFollowedBy($user))
+                            <span class="modern-badge modern-badge-success">Seni takip ediyor</span>
+                        @elseif($user->created_at->diffInDays() < 7)
+                            <span class="modern-badge modern-badge-primary">Yeni Katıldı</span>
+                        @else
+                            <span class="text-muted">{{ $user->products_count ?? 0 }} ürün</span>
+                        @endif
+                    </div>
+                </div>
+                
+                <div class="ms-auto">
+                    @if(auth()->user()->isFollowing($user))
+                        <button wire:click="unfollow({{ $user->id }})"
+                                class="btn-secondary-enhanced btn-enhanced btn-sm">
+                            <i class="bi bi-check"></i>
+                            Takip Ediliyor
+                        </button>
                     @else
-                        {{ $user->full_name }}
+                        <button wire:click="follow({{ $user->id }})"
+                                class="btn-primary-enhanced btn-enhanced btn-sm">
+                            <i class="bi bi-plus"></i>
+                            Takip Et
+                        </button>
                     @endif
                 </div>
             </div>
-
-            @if(auth()->user()->isFollowing($user))
-                <button wire:click="unfollow({{ $user->id }})"
-                        class="btn btn-sm ms-auto btn-secondary">
-                    Takip Ediliyor
-                </button>
-            @else
-                <button wire:click="follow({{ $user->id }})"
-                        class="btn btn-sm ms-auto btn-outline-primary">
-                    Takip Et
-                </button>
-            @endif
         </div>
     @endforeach
 
     @if($loaded && $this->users->isEmpty())
-        <div class="text-center py-3 text-muted">
-            Önerilecek kullanıcı kalmadı
+        <div class="modern-empty-state">
+            <div class="modern-empty-icon">
+                <i class="bi bi-people"></i>
+            </div>
+            <h6 class="modern-empty-title">Önerilecek kullanıcı kalmadı</h6>
+            <p class="modern-empty-description">Yeni kullanıcılar katıldığında burada görünecek</p>
         </div>
     @endif
 </div>
