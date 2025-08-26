@@ -1,0 +1,147 @@
+/* Saved İtems Posts */
+.saved-items-posts-wrapper {
+    padding: 2rem 1rem;
+    border-radius: 20px;
+    animation: gradientBackground 15s ease infinite;
+    background: linear-gradient(270deg, #fcb91e, #e38aff, #5edfff, #fc5185);
+    background-size: 800% 800%;
+}
+
+.saved-items-posts-tabs {
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #fcb91e;
+    position: relative;
+}
+
+.saved-items-posts-tab-btn {
+    width: 340px;
+    background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+    color: #333;
+    border: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.saved-items-posts-tab-btn:hover {
+    color: var(--text-color);
+    box-shadow: none;
+    border-bottom: 2px solid white;
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+    background: linear-gradient(135deg, #ffd3a5, #fd6585);
+    transform: translateY(-2px);
+}
+
+.saved-items-posts-tab-btn.active {
+    background: linear-gradient(135deg, #fcb045, #fd1d1d);
+    color: #fff;
+    box-shadow: none;
+    border-bottom: 2px solid white;
+    position: relative;
+    z-index: 2;
+    transform: none;
+}
+
+.saved-items-posts-tab-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0.4),
+            rgba(255, 255, 255, 0));
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    z-index: 0;
+}
+
+.saved-items-posts-tab-btn:hover::before {
+    left: 100%;
+}
+
+
+
+.search-product-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.search-product-card:hover {
+    transform: scale(1.05);
+}
+
+.profile-tab-section-saved-posts-toolbar-title {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    text-transform: capitalize !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .saved-items-posts-tab-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+          width: 100%;
+    }
+
+    .saved-items-posts-tabs {
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+    .profile-tab-section-saved-posts-toolbar-title {
+  text-transform: capitalize !important;
+  font-size: 16px;
+}
+}
+
+/* Responsive  */
+@media (max-width: 576px) {
+    .saved-items-posts-tab-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+         width: 100%;
+    }
+
+    .saved-items-posts-tabs {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+}

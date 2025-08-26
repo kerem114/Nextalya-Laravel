@@ -1,0 +1,15 @@
+{
+    "Member": true,
+    "Dashboard": true,
+    "Post": true,
+    "Poll": true,
+    "Product": true,
+    "Save": true,
+    "Search": true,
+    "Community": true,
+    "Group": true,
+    "Help": true,
+    "Notification": true,
+    "Page": true,
+    "Comment": true
+}
