@@ -1,5 +1,5 @@
-<div class="modern-product-card card-enhanced hover-lift-enhanced mb-4 animate-fade-in">
-    <div class="modern-product-header d-flex align-items-center justify-content-between p-3">
+<div class="card-enhanced hover-lift mb-4 animate-fade-in">
+    <div class="card-header d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center gap-3">
             <a href="{{ route('user.account',$take->user->username) }}" class="text-decoration-none">
                 <img src="{{ asset('storage/'.$take->user->avatar) }}" alt="Profile"
@@ -10,12 +10,12 @@
                 <a href="{{ route('user.account',$take->user->username) }}" class="text-muted small text-decoration-none">{{ '@' . $take->user->username }}</a>
             </div>
         </div>
-        <div class="modern-dropdown">
-            <button class="modern-action-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown">
+            <button class="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
-            <ul class="dropdown-menu modern-dropdown-menu">
-                <li><a class="modern-dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#collection-{{ $take->id }}">
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#collection-{{ $take->id }}">
                     <i class="bi bi-collection"></i>
                     <span>Koleksiyona kaydet</span>
                 </a></li>
@@ -23,60 +23,59 @@
         </div>
     </div>
     
-    <div class="px-3 pb-2">
+    <div class="card-body">
         <div class="d-flex justify-content-between align-items-start mb-2">
-            <h6 class="modern-product-title mb-0 flex-grow-1">{{ $take->title }}</h6>
+            <h6 class="card-title mb-0 flex-grow-1">{{ $take->title }}</h6>
             @if($take->url)
-            <a href="{{ $take->url }}" target="_blank" class="modern-action-btn modern-tooltip" data-tooltip="Ürünü görüntüle">
+            <a href="{{ $take->url }}" target="_blank" class="btn btn-link modern-tooltip" data-tooltip="Ürünü görüntüle">
                 <i class="bi bi-box-arrow-up-right"></i>
             </a>
             @endif
         </div>
-    </div>
     
-    <div class="position-relative overflow-hidden">
-        @if(Str::startsWith($take->image, 'http'))
-            <img class="modern-product-image w-100" src="{{ $take->image }}" alt="{{ $take->title }} ürün kartı, fiyatı {{ $take->price }} Türk Lirası" loading="lazy" />
-        @else
-            <img class="modern-product-image w-100" src="{{ asset('storage/product/' . $take->image) }}" alt="{{ $take->title }} ürün kartı, fiyatı {{ $take->price }} Türk Lirası" loading="lazy" />
-        @endif
-        <div class="position-absolute top-0 end-0 m-3">
-            <span class="modern-badge modern-badge-primary">{{ $take->price }} ₺</span>
+        <div class="position-relative overflow-hidden mb-3">
+            @if(Str::startsWith($take->image, 'http'))
+                <img class="card-img-top" src="{{ $take->image }}" alt="{{ $take->title }} ürün kartı, fiyatı {{ $take->price }} Türk Lirası" loading="lazy" style="height: 240px; object-fit: cover;" />
+            @else
+                <img class="card-img-top" src="{{ asset('storage/product/' . $take->image) }}" alt="{{ $take->title }} ürün kartı, fiyatı {{ $take->price }} Türk Lirası" loading="lazy" style="height: 240px; object-fit: cover;" />
+            @endif
+            <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge bg-warning text-dark fw-bold">{{ $take->price }} ₺</span>
+            </div>
         </div>
-    </div>
-
-    <div class="modern-product-content">
-        <p class="modern-product-description">{{ $take->description }}</p>
         
-        <div class="modern-product-actions">
+        <p class="card-text text-muted mb-3">{{ $take->description }}</p>
+        
+        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
             <div class="d-flex gap-2">
-                <button class="modern-action-btn {{ $take->isLikedBy(auth()->user()) ? 'liked' : '' }}" data-product-id="{{ $take->id }}">
+                <button class="btn btn-link p-1 {{ $take->isLikedBy(auth()->user()) ? 'text-danger' : 'text-muted' }}" data-product-id="{{ $take->id }}">
                     <i class="bi {{ $take->isLikedBy(auth()->user()) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
                     <span class="like-count">{{ $take->likes->count() }}</span>
                 </button>
-                <a href="{{ route('product.detail',$take->slug) }}" class="modern-action-btn">
+                <a href="{{ route('product.detail',$take->slug) }}" class="btn btn-link p-1 text-muted">
                     <i class="bi bi-chat"></i>
                     <span>{{ \Modules\Comment\Models\Comments::where('product_id',$take->id)->count() }}</span>
                 </a>
-                <button class="modern-action-btn" data-bs-toggle="modal" data-bs-target="#repost-{{ $take->id }}">
+                <button class="btn btn-link p-1 text-muted" data-bs-toggle="modal" data-bs-target="#repost-{{ $take->id }}">
                     <i class="bi bi-arrow-repeat"></i>
                 </button>
             </div>
             <div class="d-flex gap-2">
                 @if(\Modules\Save\Models\Favories::isSave($take->id))
-                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="modern-action-btn text-warning">
+                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="btn btn-link p-1 text-warning">
                         <i class="bi bi-bookmark-fill"></i>
                     </a>
                 @else
-                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="modern-action-btn">
+                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="btn btn-link p-1 text-muted">
                         <i class="bi bi-bookmark"></i>
                     </a>
                 @endif
-                <button class="modern-action-btn" data-bs-toggle="modal" data-bs-target="#shareModal{{ $take->id }}">
+                <button class="btn btn-link p-1 text-muted" data-bs-toggle="modal" data-bs-target="#shareModal{{ $take->id }}">
                     <i class="bi bi-share"></i>
                 </button>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
@@ -85,37 +84,37 @@
 
 <!-- Enhanced Share Modal -->
 <div class="modal fade" id="shareModal{{ $take->id }}" tabindex="-1" aria-labelledby="shareModalLabel{{ $take->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modern-modal-content">
-            <div class="modern-modal-header">
-                <h5 class="modern-modal-title" id="shareModalLabel{{ $take->id }}">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareModalLabel{{ $take->id }}">
                     <i class="bi bi-share me-2"></i>Paylaş
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modern-modal-body text-center">
-                <div class="grid-enhanced grid-cols-5 mb-4">
-                    <a href="mailto:?body={{ urlencode(route('product.detail',$take->slug)) }}" class="btn-secondary-enhanced btn-enhanced modern-tooltip" data-tooltip="E-posta">
+            <div class="modal-body text-center">
+                <div class="d-flex justify-content-center gap-2 mb-4">
+                    <a href="mailto:?body={{ urlencode(route('product.detail',$take->slug)) }}" class="btn btn-outline-secondary btn-sm modern-tooltip" data-tooltip="E-posta">
                         <i class="bi bi-envelope"></i>
                     </a>
-                    <a href="https://wa.me/?text={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn-secondary-enhanced btn-enhanced modern-tooltip" data-tooltip="WhatsApp">
+                    <a href="https://wa.me/?text={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-success btn-sm modern-tooltip" data-tooltip="WhatsApp">
                         <i class="bi bi-whatsapp"></i>
                     </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn-secondary-enhanced btn-enhanced modern-tooltip" data-tooltip="LinkedIn">
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-primary btn-sm modern-tooltip" data-tooltip="LinkedIn">
                         <i class="bi bi-linkedin"></i>
                     </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn-secondary-enhanced btn-enhanced modern-tooltip" data-tooltip="Twitter">
+                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-dark btn-sm modern-tooltip" data-tooltip="Twitter">
                         <i class="bi bi-twitter-x"></i>
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn-secondary-enhanced btn-enhanced modern-tooltip" data-tooltip="Facebook">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-primary btn-sm modern-tooltip" data-tooltip="Facebook">
                         <i class="bi bi-facebook"></i>
                     </a>
                 </div>
-                <div class="form-group-enhanced">
-                    <label class="form-label-enhanced">Link</label>
+                <div class="mb-3">
+                    <label class="form-label">Link</label>
                     <div class="input-group">
-                        <input type="text" id="shareLink{{ $take->id }}" class="form-input-enhanced" value="{{ route('product.detail',$take->slug) }}" readonly>
-                        <button class="btn-primary-enhanced btn-enhanced" onclick="copyLink{{ $take->id }}()">
+                        <input type="text" id="shareLink{{ $take->id }}" class="form-control" value="{{ route('product.detail',$take->slug) }}" readonly>
+                        <button class="btn btn-primary" onclick="copyLink{{ $take->id }}()">
                             <i class="bi bi-clipboard"></i>
                             Kopyala
                         </button>
@@ -136,11 +135,14 @@ function copyLink{{ $take->id }}() {
     // Enhanced feedback
     const button = event.target.closest('button');
     const originalText = button.innerHTML;
-    button.innerHTML = '<i class="bi bi-check"></i> Kopyalandı!';
+    button.innerHTML = '<i class="bi bi-check me-1"></i>Kopyalandı!';
+    button.classList.remove('btn-primary');
     button.classList.add('btn-success');
     
     setTimeout(() => {
         button.innerHTML = originalText;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-primary');
         button.classList.remove('btn-success');
     }, 2000);
 }
@@ -148,7 +150,7 @@ function copyLink{{ $take->id }}() {
 
 <!-- Enhanced Like Functionality -->
 <script>
-    document.querySelectorAll('.modern-action-btn[data-product-id]').forEach(icon => {
+    document.querySelectorAll('button[data-product-id]').forEach(icon => {
         icon.addEventListener('click', function(e) {
             e.preventDefault();
 
@@ -173,7 +175,8 @@ function copyLink{{ $take->id }}() {
             .then(res => res.json())
             .then(data => {
                 if (data.liked) {
-                    this.classList.add('liked');
+                    this.classList.remove('text-muted');
+                    this.classList.add('text-danger');
                     heartIcon.classList.remove('bi-heart');
                     heartIcon.classList.add('bi-heart-fill');
                     currentCount += 1;
@@ -181,7 +184,8 @@ function copyLink{{ $take->id }}() {
                     // Add heart animation
                     heartIcon.style.animation = 'heartBeat 0.6s ease';
                 } else {
-                    this.classList.remove('liked');
+                    this.classList.remove('text-danger');
+                    this.classList.add('text-muted');
                     heartIcon.classList.remove('bi-heart-fill');
                     heartIcon.classList.add('bi-heart');
                     currentCount = Math.max(currentCount - 1, 0);
@@ -201,8 +205,10 @@ function copyLink{{ $take->id }}() {
     });
     
     // Add heart animation keyframes
-    const style = document.createElement('style');
-    style.textContent = `
+    if (!document.getElementById('heart-animation-styles')) {
+        const style = document.createElement('style');
+        style.id = 'heart-animation-styles';
+        style.textContent = `
         @keyframes heartBeat {
             0% { transform: scale(1); }
             25% { transform: scale(1.2); }
@@ -210,7 +216,8 @@ function copyLink{{ $take->id }}() {
             75% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-    `;
-    document.head.appendChild(style);
+        `;
+        document.head.appendChild(style);
+    }
 
 </script>

@@ -31,54 +31,53 @@
 <body class="animate-fade-in">
     <header>
         <!-- Header: Logo, Arama ve Menü -->
-        <nav class="navbar navbar-expand-lg navbar-light modern-header fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light nextalya-header fixed-top">
             <div class="container-fluid">
                 <!-- Logo -->
-                <div class="homepage-logo me-4 d-flex justify-content-start animate-fade-in">
-                    <a href="/" class="modern-logo text-decoration-none d-block">
-                        <span class="text-dark">NEX</span><span class="text-gradient-enhanced">TALYA</span>
+                <div class="homepage-logo me-4 d-flex justify-content-start">
+                    <a href="/" class="logo text-decoration-none d-block">
+                        <span class="text-dark">NEX</span><span class="text-gradient">TALYA</span>
                     </a>
                 </div>
 
                 <!-- Arama Çubuğu -->
-                <div class="modern-search-container mx-auto">
+                <div class="search-input-wrapper mx-auto">
                     <form action="{{ route('search.products') }}" method="GET" class="position-relative" id="custom-search">
-                        <i class="bi bi-search modern-search-icon"></i>
-                        <input class="modern-search-input d-none d-md-block" type="search" name="q" placeholder="Ürün, kullanıcı veya koleksiyon ara..." aria-label="Search" onkeydown="if(event.key === 'Enter'){ this.form.submit(); }">
+                        <input class="form-control d-none d-md-block" type="search" name="q" placeholder="Ürün, kullanıcı veya koleksiyon ara..." aria-label="Search" onkeydown="if(event.key === 'Enter'){ this.form.submit(); }">
                         <button type="submit" class="d-none">Ara</button> <!-- Gizli submit -->
                     </form>
                 </div>
 
                 <!-- Menü: Profil, Favoriler, Anasayfa vb. -->
                 <div class="d-none d-md-flex justify-content-end">
-                    <a href="{{ route('dashboard.index') }}" class="modern-nav-item modern-tooltip" data-tooltip="Anasayfa">
-                        <i class="bi bi-house-door modern-nav-icon"></i>
+                    <a href="{{ route('dashboard.index') }}" class="nav-link modern-tooltip" data-tooltip="Anasayfa">
+                        <i class="bi bi-house-door"></i>
                     </a>
-                    <a href="{{ route('discover.index') }}" class="modern-nav-item modern-tooltip" data-tooltip="Keşfet">
-                        <i class="bi bi-compass modern-nav-icon"></i>
+                    <a href="{{ route('discover.index') }}" class="nav-link modern-tooltip" data-tooltip="Keşfet">
+                        <i class="bi bi-compass"></i>
                     </a>
-                    <a href="{{ route('post.index') }}" class="modern-nav-item modern-tooltip" data-tooltip="Yeni Gönderi">
-                        <i class="bi bi-plus-circle modern-nav-icon"></i>
+                    <a href="{{ route('post.index') }}" class="nav-link modern-tooltip" data-tooltip="Yeni Gönderi">
+                        <i class="bi bi-plus-circle"></i>
                     </a>
-                    <a href="{{ route('save.index') }}" class="modern-nav-item modern-tooltip" data-tooltip="Kaydedilenler">
-                        <i class="bi bi-heart modern-nav-icon"></i>
+                    <a href="{{ route('save.index') }}" class="nav-link modern-tooltip" data-tooltip="Kaydedilenler">
+                        <i class="bi bi-heart"></i>
                     </a>
-                    <a href="#" class="modern-nav-item modern-tooltip" data-tooltip="Bildirimler">
-                        <i class="bi bi-bell modern-nav-icon"></i>
+                    <a href="#" class="nav-link modern-tooltip" data-tooltip="Bildirimler">
+                        <i class="bi bi-bell"></i>
                     </a>
-                    <a href="#" class="modern-nav-item modern-tooltip" data-tooltip="Profil">
-                        <i class="bi bi-person-circle modern-nav-icon"></i>
+                    <a href="#" class="nav-link modern-tooltip" data-tooltip="Profil">
+                        <i class="bi bi-person-circle"></i>
                     </a>
                 </div>
 
                 <!-- Mobile Dropdown Button -->
                <div class="d-md-none ms-auto" id="mobilmenu">
                     <div class="dropdown">
-                        <button class="btn border-0 p-2 modern-nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn border-0 p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list mobile-menu-icon"></i>
                         </button>
 
-                        <ul class="dropdown-menu dropdown-menu-end modern-dropdown-menu mt-2">
+                        <ul class="dropdown-menu dropdown-menu-end mobile-dropdown-menu mt-2">
                             <li><a class="dropdown-item" href="{{ route('dashboard.index') }}"><i class="bi bi-house-door"
                                         style="font-size: 1.5rem;"></i></a></li>
                             <li><a class="dropdown-item" href="{{ route('discover.index') }}"><i class="bi bi-search"
@@ -105,7 +104,7 @@
     </header>
 
     <!-- Profil Menü -->
-    <div class="profile-menu-container glass-effect-enhanced" id="profile-menu">
+    <div class="profile-menu-container" id="profile-menu">
         <div class="profile-menu-header d-flex justify-content-between align-items-center">
             <span class="profile-menu-username">{{ Auth::user()->name }}</span>
             <div class="d-flex align-items-center gap-2">
@@ -115,31 +114,31 @@
         </div>
 
         <div class="profile-menu-list">
-            <a href="{{ route('my.profile') }}" class="profile-menu-item hover-lift-enhanced">
+            <a href="{{ route('my.profile') }}" class="profile-menu-item">
                 <div class="profile-menu-icon"><i class="bi bi-person-fill"></i></div>
                 <span>Profili görüntüle</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
             </a>
-            <a href="{{ route('community.index') }}" class="profile-menu-item hover-lift-enhanced">
+            <a href="{{ route('community.index') }}" class="profile-menu-item">
                 <div class="profile-menu-icon"><i class="bi bi-shield-lock-fill"></i></div>
                 <span>Koleksiyon</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
             </a>
-            <a href="{{ route('save.index') }}" class="profile-menu-item hover-lift-enhanced">
+            <a href="{{ route('save.index') }}" class="profile-menu-item">
                 <div class="profile-menu-icon"><i class="bi bi-bookmark-fill"></i></div>
                 <span>Kaydedilenler</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
             </a>
             <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-            <a href="#" class="profile-menu-item hover-lift-enhanced collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <a href="#" class="profile-menu-item collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <div class="profile-menu-icon"><i class="bi bi-bookmark-fill"></i></div>
                 <span>Sürpriz Avantajlarını Gör 🎁</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
             </a>
               <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <div class="modern-notification modern-notification-success">
+                        <div class="modern-notification modern-notification-success mb-3">
                             <h6 class="mb-2">🎉 Hoş Geldin Bonusu</h6>
                             <p class="mb-0">İlk 30 gün boyunca premium özelliklerden ücretsiz yararlan!</p>
                         </div>
@@ -154,7 +153,7 @@
             </div>
 
 
-             <a href="{{ route('business.account') }}" class="profile-menu-item hover-lift-enhanced">
+             <a href="{{ route('business.account') }}" class="profile-menu-item">
                 <div class="profile-menu-icon"><i class="bi bi-shield-lock-fill"></i></div>
                 <span>Profesyonel hesaba geç</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
@@ -174,24 +173,24 @@
         <hr class="profile-menu-divider" />
 
         <div class="profile-menu-links">
-            <a href="{{ route('about.index') }}" class="hover-lift-enhanced">Hakkımızda</a>
-            <a href="{{ route('help.index') }}" class="hover-lift-enhanced">Yardım</a>
-            <a href="{{ route('community.rule') }}" class="hover-lift-enhanced">Topluluk kuralları</a>
-            <a href="{{ route('privacy.policy') }}" class="hover-lift-enhanced">Gizlilik politikası</a>
-            <a href="{{ route('carrier.index') }}" class="hover-lift-enhanced">Kariyer</a>
-            <a href="{{ route('kvkk.index') }}" class="hover-lift-enhanced">Kişisel verilerin korunması kanunu</a>
-            <a href="{{ route('user.policy') }}" class="hover-lift-enhanced">Kullanıcı sözleşmesi</a>
+            <a href="{{ route('about.index') }}">Hakkımızda</a>
+            <a href="{{ route('help.index') }}">Yardım</a>
+            <a href="{{ route('community.rule') }}">Topluluk kuralları</a>
+            <a href="{{ route('privacy.policy') }}">Gizlilik politikası</a>
+            <a href="{{ route('carrier.index') }}">Kariyer</a>
+            <a href="{{ route('kvkk.index') }}">Kişisel verilerin korunması kanunu</a>
+            <a href="{{ route('user.policy') }}">Kullanıcı sözleşmesi</a>
         </div>
 
 
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn-primary-enhanced btn-enhanced profile-menu-logout">
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="profile-menu-logout">
             <i class="bi bi-box-arrow-right me-2"></i> Çıkış yap
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
     </div>
-   <div class="profile-menu-container glass-effect-enhanced" id="bell-menu">
+   <div class="profile-menu-container" id="bell-menu">
         <div class="profile-menu-header d-flex justify-content-between align-items-center">
             <span class="profile-menu-username">Bildirimler</span>
             <div class="d-flex align-items-center gap-2">
@@ -200,7 +199,7 @@
         </div>
    <div class="profile-menu-list">
         @forelse (\Modules\Notification\Models\Customlogs::where('user_id',Auth::user()->id)->get() as $take)
-            <a href="#" class="profile-menu-item hover-lift-enhanced modern-notification">
+            <a href="#" class="profile-menu-item modern-notification">
                 <div class="profile-menu-icon"><i class="bi bi-person-fill"></i></div>
                 <span>{{ $take->content }}</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
@@ -223,43 +222,43 @@
         <div class="row" style="margin-top: 50px">
             <!-- Sol Menü (Tablet ve Üstü) -->
             <div class="col-lg-3 col-md-3 sidebar animate-fade-in-left">
-                <div class="modern-sidebar">
-                    <h6 class="modern-sidebar-title">Navigasyon</h6>
+                <div class="modern-sidebar mt-4">
+                    <h6 class="modern-sidebar-title">Ana Menü</h6>
                     <ul class="nav flex-column">
-                        <li class="nav-item mt-5">
-                            <a href="{{ route('dashboard.index') }}" class="modern-sidebar-item">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.index') }}" class="modern-sidebar-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
                                 <i class="bi bi-house-door modern-sidebar-icon"></i>
                                 <span>Anasayfa</span>
                             </a>
                         </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('discover.index') }}" class="modern-sidebar-item">
+                        <li class="nav-item">
+                            <a href="{{ route('discover.index') }}" class="modern-sidebar-item {{ request()->routeIs('discover.index') ? 'active' : '' }}">
                                 <i class="bi bi-compass modern-sidebar-icon"></i>
                                 <span>Keşfet</span>
                             </a>
                         </li>
                         @if(Auth::user()->role === 'business')
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('product.create') }}" class="modern-sidebar-item">
+                        <li class="nav-item">
+                            <a href="{{ route('product.create') }}" class="modern-sidebar-item {{ request()->routeIs('product.create') ? 'active' : '' }}">
                                 <i class="bi bi-plus-circle modern-sidebar-icon"></i>
                                 <span>Ürün oluştur</span>
                             </a>
                         </li>
                         @endif
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('community.index') }}" class="modern-sidebar-item">
+                        <li class="nav-item">
+                            <a href="{{ route('community.index') }}" class="modern-sidebar-item {{ request()->routeIs('community.*') ? 'active' : '' }}">
                                 <i class="bi bi-people modern-sidebar-icon"></i>
                                 <span>Koleksiyonlar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('save.index') }}" class="modern-sidebar-item">
+                            <a href="{{ route('save.index') }}" class="modern-sidebar-item {{ request()->routeIs('save.index') ? 'active' : '' }}">
                                 <i class="bi bi-heart modern-sidebar-icon"></i>
                                 <span>Kaydedilenler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('my.profile') }}" class="modern-sidebar-item">
+                            <a href="{{ route('my.profile') }}" class="modern-sidebar-item {{ request()->routeIs('my.profile') ? 'active' : '' }}">
                                 <i class="bi bi-person-circle modern-sidebar-icon"></i>
                                 <span>Profilim</span>
                             </a>
@@ -272,14 +271,14 @@
 
             <!-- Sağ Öneriler (Desktop ve Üstü) -->
             <div class="col-lg-3 col-md-3 d-none d-lg-block sidebar_right animate-fade-in-right">
-                <div class="modern-sidebar">
+                <div class="modern-sidebar mt-4">
                     <h6 class="modern-sidebar-title">Önerilen Kullanıcılar</h6>
                     <livewire:suggested-users />
                 </div>
                 
                 <div class="modern-sidebar mt-4">
                     <h6 class="modern-sidebar-title">Trending Konular</h6>
-                    <div class="d-flex flex-wrap gap-2">
+                    <div class="d-flex flex-wrap gap-2 mt-3">
                         <span class="modern-badge modern-badge-primary">#teknoloji</span>
                         <span class="modern-badge modern-badge-primary">#moda</span>
                         <span class="modern-badge modern-badge-primary">#ev</span>
@@ -292,33 +291,49 @@
   <!-- Main Content End -->
 
     <!-- Footer -->
-    <footer class="footer mt-5 py-4 text-center modern-footer">
+    <footer class="footer mt-5 py-5 text-center">
         <div class="container">
-            <div class="d-flex flex-wrap justify-content-center mb-3 gap-3">
-                <a wire:navigate href="{{ route('about.index') }}" class="text-decoration-none hover-lift-enhanced">Hakkında</a>
-                <a wire:navigate href="{{ route('help.index') }}" class="text-decoration-none hover-lift-enhanced">Yardım</a>
-                <a wire:navigate href="{{ route('carrier.index') }}" class="text-decoration-none hover-lift-enhanced">İş Fırsatları</a>
-                <a wire:navigate href="{{ route('privacy.policy') }}" class="text-decoration-none hover-lift-enhanced">Gizlilik</a>
-                <a wire:navigate href="{{ route('kvkk.index') }}" class="text-decoration-none hover-lift-enhanced">KVKK</a>
-                <a wire:navigate href="{{ route('user.policy') }}" class="text-decoration-none hover-lift-enhanced">Kullanıcı</a>
-                <a wire:navigate href="{{ route('community.rule') }}" class="text-decoration-none hover-lift-enhanced">Kurallar</a>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="homepage-logo mb-3">
+                        <span class="text-dark">NEX</span><span class="text-gradient">TALYA</span>
+                    </div>
+                    <p class="text-muted">Alışverişin sosyal medyası. Birlikte keşfedin, birlikte değerlendirin.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">Şirket</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a wire:navigate href="{{ route('about.index') }}" class="text-decoration-none">Hakkında</a>
+                        <a wire:navigate href="{{ route('carrier.index') }}" class="text-decoration-none">İş Fırsatları</a>
+                        <a wire:navigate href="{{ route('help.index') }}" class="text-decoration-none">Yardım</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">Yasal</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a wire:navigate href="{{ route('privacy.policy') }}" class="text-decoration-none">Gizlilik Politikası</a>
+                        <a wire:navigate href="{{ route('kvkk.index') }}" class="text-decoration-none">KVKK</a>
+                        <a wire:navigate href="{{ route('user.policy') }}" class="text-decoration-none">Kullanıcı Sözleşmesi</a>
+                        <a wire:navigate href="{{ route('community.rule') }}" class="text-decoration-none">Topluluk Kuralları</a>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
-                <div class="modern-logo" style="font-size: 1.25rem;">NEXTALYA</div>
+            <hr class="my-4" style="border-color: var(--border-color);">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="small text-muted">
+                    © 2025 Nextalya. Tüm hakları saklıdır.
+                </div>
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-decoration-none modern-tooltip" data-tooltip="Twitter">
+                    <a href="#" class="text-decoration-none" title="Twitter">
                         <i class="bi bi-twitter"></i>
                     </a>
-                    <a href="#" class="text-decoration-none modern-tooltip" data-tooltip="Instagram">
+                    <a href="#" class="text-decoration-none" title="Instagram">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="#" class="text-decoration-none modern-tooltip" data-tooltip="LinkedIn">
+                    <a href="#" class="text-decoration-none" title="LinkedIn">
                         <i class="bi bi-linkedin"></i>
                     </a>
                 </div>
-            </div>
-            <div class="small text-muted">
-                © 2025 Nextalya. Tüm hakları saklıdır.
             </div>
         </div>
     </footer>
