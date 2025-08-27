@@ -14,15 +14,15 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  
   <link rel="stylesheet" href="{{ asset('frontend/css/modern-components.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/header.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/template.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   @yield('css')
     @livewireStyles
@@ -36,7 +36,7 @@
                 <!-- Logo -->
                 <div class="homepage-logo me-4 d-flex justify-content-start">
                     <a href="/" class="logo text-decoration-none d-block">
-                        <span class="text-dark">NEX</span><span class="text-gradient">TALYA</span>
+                        <span class="text-dark">NEXT</span><span class="text-gradient">ALYA</span>
                     </a>
                 </div>
 
@@ -50,16 +50,16 @@
 
                 <!-- Menü: Profil, Favoriler, Anasayfa vb. -->
                 <div class="d-none d-md-flex justify-content-end">
-                    <a href="{{ route('dashboard.index') }}" class="nav-link modern-tooltip" data-tooltip="Anasayfa">
+                    <a href="{{ route('dashboard.index') }}" class="nav-link modern-tooltip {{ request()->routeIs('dashboard.index') ? 'active' : '' }}" data-tooltip="Anasayfa">
                         <i class="bi bi-house-door"></i>
                     </a>
-                    <a href="{{ route('discover.index') }}" class="nav-link modern-tooltip" data-tooltip="Keşfet">
+                    <a href="{{ route('discover.index') }}" class="nav-link modern-tooltip {{ request()->routeIs('discover.index') ? 'active' : '' }}" data-tooltip="Keşfet">
                         <i class="bi bi-compass"></i>
                     </a>
-                    <a href="{{ route('post.index') }}" class="nav-link modern-tooltip" data-tooltip="Yeni Gönderi">
+                    <a href="{{ route('post.index') }}" class="nav-link modern-tooltip {{ request()->routeIs('post.*') ? 'active' : '' }}" data-tooltip="Yeni Gönderi">
                         <i class="bi bi-plus-circle"></i>
                     </a>
-                    <a href="{{ route('save.index') }}" class="nav-link modern-tooltip" data-tooltip="Kaydedilenler">
+                    <a href="{{ route('save.index') }}" class="nav-link modern-tooltip {{ request()->routeIs('save.index') ? 'active' : '' }}" data-tooltip="Kaydedilenler">
                         <i class="bi bi-heart"></i>
                     </a>
                     <a href="#" class="nav-link modern-tooltip" data-tooltip="Bildirimler">
@@ -133,7 +133,7 @@
             <div class="accordion-item">
             <a href="#" class="profile-menu-item collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <div class="profile-menu-icon"><i class="bi bi-bookmark-fill"></i></div>
-                <span>Sürpriz Avantajlarını Gör 🎁</span>
+                <span>Sürpriz Avantajlarını Gör 🎁</span>
                 <i class="bi bi-arrow-right profile-menu-right-icon"></i>
             </a>
               <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -296,9 +296,20 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="homepage-logo mb-3">
-                        <span class="text-dark">NEX</span><span class="text-gradient">TALYA</span>
+                        <span class="text-dark">NEXT</span><span class="text-gradient">ALYA</span>
                     </div>
                     <p class="text-muted">Alışverişin sosyal medyası. Birlikte keşfedin, birlikte değerlendirin.</p>
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <a href="#" class="modern-action-btn modern-tooltip" data-tooltip="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="modern-action-btn modern-tooltip" data-tooltip="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="modern-action-btn modern-tooltip" data-tooltip="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h6 class="fw-bold mb-3">Şirket</h6>
@@ -323,16 +334,9 @@
                 <div class="small text-muted">
                     © 2025 Nextalya. Tüm hakları saklıdır.
                 </div>
-                <div class="d-flex gap-3">
-                    <a href="#" class="text-decoration-none" title="Twitter">
-                        <i class="bi bi-twitter"></i>
-                    </a>
-                    <a href="#" class="text-decoration-none" title="Instagram">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="#" class="text-decoration-none" title="LinkedIn">
-                        <i class="bi bi-linkedin"></i>
-                    </a>
+                <div class="d-flex gap-3 small">
+                    <span class="modern-badge modern-badge-primary">v1.0.0</span>
+                    <span class="text-muted">Türkiye'de yapıldı 🇹🇷</span>
                 </div>
             </div>
         </div>
@@ -484,7 +488,6 @@
     if(localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");
         toggle.classList.add("active");
-        changeTextColors("dark");
     }
 
     toggle.addEventListener("click", function() {
@@ -492,30 +495,11 @@
         if(this.classList.contains("active")) {
             document.body.classList.add("dark-mode");
             localStorage.setItem("theme", "dark");
-            changeTextColors("dark");
         } else {
             document.body.classList.remove("dark-mode");
             localStorage.setItem("theme", "light");
-            changeTextColors("light");
         }
     });
-
-    function changeTextColors(mode) {
-        const elements = document.querySelectorAll(".text-dark, .text-white");
-        elements.forEach(el => {
-            if(mode === "dark") {
-                if(el.classList.contains("text-dark")) {
-                    el.classList.remove("text-dark");
-                    el.classList.add("text-white");
-                }
-            } else {
-                if(el.classList.contains("text-white")) {
-                    el.classList.remove("text-white");
-                    el.classList.add("text-dark");
-                }
-            }
-        });
-    }
   </script>
   
   <!-- Enhanced Performance and UX -->

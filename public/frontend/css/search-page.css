@@ -14,13 +14,11 @@
     align-items: center;
     gap: 10px;
     flex-wrap: nowrap;
-    /* Butonlar yatayda kayacak şekilde hizalanır */
     overflow-x: auto;
-    /* Kaydırma çubuğu */
     padding: 10px 0 10px 12px;
     scroll-padding-left: 12px;
     scrollbar-width: thin;
-    scrollbar-color: #D4AF37 transparent;
+    scrollbar-color: var(--primary-gold, #d4af37) transparent;
 }
 
 .search-filter-buttons::-webkit-scrollbar {
@@ -32,37 +30,36 @@
 }
 
 .search-filter-buttons::-webkit-scrollbar-thumb {
-    background-color: #D4AF37;
+    background-color: var(--primary-gold, #d4af37);
     border-radius: 8px;
 }
 
 /* Filtre Butonları */
 .search-filter-button {
-    background-color: white;
-    border: 1px solid #353535;
+    background-color: var(--card-bg, white);
+    border: 2px solid var(--border-color, #e5e7eb);
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-color);
     cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
+    border-radius: 12px;
+    transition: all 0.3s ease;
     white-space: nowrap;
-    /* Yazının taşmasını engelleme */
     flex-shrink: 0;
-    /* Butonların küçülmesini engeller */
     min-width: 120px;
-    /* Butonların minimum genişliğini belirler */
 }
 
 .search-filter-button:hover {
-    background-color: #D4AF37;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-gold, #d4af37), var(--secondary-orange, #fcb91e));
+    color: #000;
+    border-color: var(--primary-gold, #d4af37);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 /* Product Cards Section */
 .search-product-cards {
-
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     margin-top: 40px;
@@ -75,37 +72,47 @@
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    border-radius: 4px;
-    border: 1px solid rgba(170, 170, 170, 0.80);
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
     width: 100%;
     height: auto;
+    background-color: var(--card-bg, white);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.search-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* Product Card Image */
 .search-product-image {
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: 8px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.search-product-card:hover .search-product-image {
+    transform: scale(1.02);
 }
 
 /* Product Info */
 .search-product-price {
     color: var(--text-color);
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 600;
-    line-height: normal;
 }
 
 .search-product-name {
     color: var(--text-color);
     text-align: center;
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    font-style: normal;
-    line-height: normal;
     letter-spacing: -0.28px;
 }
 
@@ -196,18 +203,26 @@
 }
 
 .product-post-card {
-    border: 1px solid rgba(170, 170, 170, 0.8);
-    border-radius: 6px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
     padding: 16px;
     background-color: var(--bg-color) !important;
     max-width: 547px;
     margin: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.product-post-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
 }
 
 .product-post-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .product-post-profile {
@@ -215,6 +230,13 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid var(--border-color, #e5e7eb);
+    transition: all 0.3s ease;
+}
+
+.product-post-profile:hover {
+    border-color: var(--primary-gold, #d4af37);
+    transform: scale(1.05);
 }
 
 .product-post-user {
@@ -225,11 +247,13 @@
 .product-post-name {
     font-weight: 600;
     font-size: 14px;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
 .product-post-username {
     font-size: 12px;
-    color: #888;
+    color: var(--text-muted, #6b7280);
 }
 
 .product-post-actions {
@@ -247,22 +271,25 @@
 
 .product-post-name:hover,
 .product-post-username:hover {
-    text-decoration: underline;
+    color: var(--primary-gold, #d4af37);
 }
 
 .product-post-follow {
     background-color: transparent;
-    border: 1px solid #D4AF37;
+    border: 2px solid var(--primary-gold, #d4af37);
     padding: 4px 10px;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 13px;
-    color: #D4AF37;
+    color: var(--primary-gold, #d4af37);
     cursor: pointer;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .product-post-follow:hover {
-    opacity: 0.85;
+    background-color: var(--primary-gold, #d4af37);
+    color: #000;
+    transform: translateY(-1px);
 }
 
 .product-post-options {
@@ -270,6 +297,11 @@
     font-size: 20px;
     padding-left: 10px;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.product-post-options:hover {
+    color: var(--primary-gold, #d4af37);
 }
 
 .product-post-title-row {
@@ -289,7 +321,12 @@
     width: 100%;
     height: 259px;
     object-fit: cover;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.product-post-card:hover .product-post-image {
+    transform: scale(1.02);
 }
 
 .product-post-meta {
@@ -302,17 +339,15 @@
 .product-post-price {
     font-weight: 600;
     font-size: 20px;
-    font-family: Poppins, sans-serif;
-    color: #D4AF37;
-    font-style: normal;
-    line-height: normal;
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-gold, #d4af37);
 }
 
 .product-post-rating {
     display: flex;
     align-items: center;
     gap: 2px;
-    color: #D4AF37;
+    color: var(--primary-gold, #d4af37);
     font-size: 14px;
 }
 
@@ -328,6 +363,8 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
 }
 
 .product-post-left-icons,
@@ -341,21 +378,24 @@
     align-items: center;
     gap: 4px;
     font-size: 16px;
-    color: #444;
-    border-radius: 20px;
+    color: var(--text-color);
+    border-radius: 8px;
     padding: 4px 8px;
     background-color: var(--bg-color) !important;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .product-post-icon span {
-    color: #D4AF37;
+    color: var(--primary-gold, #d4af37);
     font-weight: 600;
     font-size: 14px;
 }
 
 .product-post-icon:hover {
-    background-color: #f8f8f8;
+    background-color: var(--bg-hover-color, #f5f5f5) !important;
+    color: var(--primary-gold, #d4af37);
+    transform: translateY(-1px);
 }
 
 .search-post-header-container {
@@ -383,7 +423,7 @@
 }
 
 .product-post-rating i {
-    color: #D4AF37;
+    color: var(--primary-gold, #d4af37);
     font-size: 18px;
     cursor: pointer;
     transition: transform 0.2s ease;

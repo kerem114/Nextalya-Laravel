@@ -1,4 +1,4 @@
-<div class="card-enhanced hover-lift mb-4 animate-fade-in">
+<div class="card hover-lift mb-4 animate-fade-in">
     <div class="card-header d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center gap-3">
             <a href="{{ route('user.account',$take->user->username) }}" class="text-decoration-none">
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-link text-muted" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu">
@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-between align-items-start mb-2">
             <h6 class="card-title mb-0 flex-grow-1">{{ $take->title }}</h6>
             @if($take->url)
-            <a href="{{ $take->url }}" target="_blank" class="btn btn-link modern-tooltip" data-tooltip="Ürünü görüntüle">
+            <a href="{{ $take->url }}" target="_blank" class="btn btn-link text-muted modern-tooltip" data-tooltip="Ürünü görüntüle">
                 <i class="bi bi-box-arrow-up-right"></i>
             </a>
             @endif
@@ -40,7 +40,7 @@
                 <img class="card-img-top" src="{{ asset('storage/product/' . $take->image) }}" alt="{{ $take->title }} ürün kartı, fiyatı {{ $take->price }} Türk Lirası" loading="lazy" style="height: 240px; object-fit: cover;" />
             @endif
             <div class="position-absolute top-0 end-0 m-3">
-                <span class="badge bg-warning text-dark fw-bold">{{ $take->price }} ₺</span>
+                <span class="badge bg-warning text-dark fw-bold fs-6">{{ $take->price }} ₺</span>
             </div>
         </div>
         
@@ -48,34 +48,33 @@
         
         <div class="d-flex justify-content-between align-items-center pt-3 border-top">
             <div class="d-flex gap-2">
-                <button class="btn btn-link p-1 {{ $take->isLikedBy(auth()->user()) ? 'text-danger' : 'text-muted' }}" data-product-id="{{ $take->id }}">
+                <button class="modern-action-btn {{ $take->isLikedBy(auth()->user()) ? 'liked' : '' }}" data-product-id="{{ $take->id }}">
                     <i class="bi {{ $take->isLikedBy(auth()->user()) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
                     <span class="like-count">{{ $take->likes->count() }}</span>
                 </button>
-                <a href="{{ route('product.detail',$take->slug) }}" class="btn btn-link p-1 text-muted">
+                <a href="{{ route('product.detail',$take->slug) }}" class="modern-action-btn">
                     <i class="bi bi-chat"></i>
                     <span>{{ \Modules\Comment\Models\Comments::where('product_id',$take->id)->count() }}</span>
                 </a>
-                <button class="btn btn-link p-1 text-muted" data-bs-toggle="modal" data-bs-target="#repost-{{ $take->id }}">
+                <button class="modern-action-btn" data-bs-toggle="modal" data-bs-target="#repost-{{ $take->id }}">
                     <i class="bi bi-arrow-repeat"></i>
                 </button>
             </div>
             <div class="d-flex gap-2">
                 @if(\Modules\Save\Models\Favories::isSave($take->id))
-                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="btn btn-link p-1 text-warning">
+                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="modern-action-btn" style="color: #f59e0b;">
                         <i class="bi bi-bookmark-fill"></i>
                     </a>
                 @else
-                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="btn btn-link p-1 text-muted">
+                    <a wire:navigate href="{{ route('product.favories', $take->id) }}" class="modern-action-btn">
                         <i class="bi bi-bookmark"></i>
                     </a>
                 @endif
-                <button class="btn btn-link p-1 text-muted" data-bs-toggle="modal" data-bs-target="#shareModal{{ $take->id }}">
+                <button class="modern-action-btn" data-bs-toggle="modal" data-bs-target="#shareModal{{ $take->id }}">
                     <i class="bi bi-share"></i>
                 </button>
             </div>
         </div>
-    </div>
     </div>
 </div>
 
@@ -94,19 +93,19 @@
             </div>
             <div class="modal-body text-center">
                 <div class="d-flex justify-content-center gap-2 mb-4">
-                    <a href="mailto:?body={{ urlencode(route('product.detail',$take->slug)) }}" class="btn btn-outline-secondary btn-sm modern-tooltip" data-tooltip="E-posta">
+                    <a href="mailto:?body={{ urlencode(route('product.detail',$take->slug)) }}" class="modern-action-btn modern-tooltip" data-tooltip="E-posta">
                         <i class="bi bi-envelope"></i>
                     </a>
-                    <a href="https://wa.me/?text={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-success btn-sm modern-tooltip" data-tooltip="WhatsApp">
+                    <a href="https://wa.me/?text={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="modern-action-btn modern-tooltip" data-tooltip="WhatsApp" style="color: #25d366;">
                         <i class="bi bi-whatsapp"></i>
                     </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-primary btn-sm modern-tooltip" data-tooltip="LinkedIn">
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="modern-action-btn modern-tooltip" data-tooltip="LinkedIn" style="color: #0077b5;">
                         <i class="bi bi-linkedin"></i>
                     </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-dark btn-sm modern-tooltip" data-tooltip="Twitter">
+                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="modern-action-btn modern-tooltip" data-tooltip="Twitter" style="color: #1da1f2;">
                         <i class="bi bi-twitter-x"></i>
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="btn btn-outline-primary btn-sm modern-tooltip" data-tooltip="Facebook">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product.detail',$take->slug)) }}" target="_blank" class="modern-action-btn modern-tooltip" data-tooltip="Facebook" style="color: #1877f2;">
                         <i class="bi bi-facebook"></i>
                     </a>
                 </div>
@@ -139,7 +138,7 @@ function copyLink{{ $take->id }}() {
     button.classList.remove('btn-primary');
     button.classList.add('btn-success');
     
-    setTimeout(() => {
+        document.querySelectorAll('.modern-action-btn[data-product-id]').forEach(icon => {
         button.innerHTML = originalText;
         button.classList.remove('btn-success');
         button.classList.add('btn-primary');
@@ -164,8 +163,7 @@ function copyLink{{ $take->id }}() {
             this.style.opacity = '0.7';
 
             fetch(`/product/${productId}/like`, {
-                method: 'POST',
-                headers: {
+                        this.classList.add('liked');
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -173,8 +171,7 @@ function copyLink{{ $take->id }}() {
                 body: JSON.stringify({})
             })
             .then(res => res.json())
-            .then(data => {
-                if (data.liked) {
+                        this.classList.remove('liked');
                     this.classList.remove('text-muted');
                     this.classList.add('text-danger');
                     heartIcon.classList.remove('bi-heart');

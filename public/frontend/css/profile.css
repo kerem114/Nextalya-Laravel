@@ -71,10 +71,20 @@
 .profile-tab-section-edit-select {
     width: 100%;
     padding: 10px 14px;
-    border-radius: 6px;
+    border-radius: 12px;
     font-size: 14px;
-    background-color: white;
-    border: 1px solid var(--text-color) !important;
+    background-color: var(--card-bg, white);
+    border: 2px solid var(--border-color, #e5e7eb) !important;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.profile-tab-section-edit-input:focus,
+.profile-tab-section-edit-textarea:focus,
+.profile-tab-section-edit-select:focus {
+    border-color: var(--primary-gold, #d4af37) !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    outline: none;
 }
 
 
@@ -91,18 +101,19 @@
 
 .profile-tab-section-edit-button {
     width: 100%;
-    background-color: #d4af37;
-    color: black;
+    background: linear-gradient(135deg, var(--primary-gold, #d4af37), var(--secondary-orange, #fcb91e));
+    color: #000;
     font-weight: 600;
     padding: 12px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .profile-tab-section-edit-button i {
@@ -112,7 +123,9 @@
 }
 
 .profile-tab-section-edit-button:hover {
-    background-color: #c49e2f;
+    background: linear-gradient(135deg, #c99c2a, #e0a814);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
 
@@ -212,14 +225,15 @@
 }
 
 .profile-tab-section-saved-posts-stats-box {
-    border: 1px solid #000;
-    border-radius: 8px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     animation: fadeInUp 0.6s ease;
     background-color: var(--bg-color) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 @keyframes fadeInUp {
@@ -237,12 +251,12 @@
 .profile-tab-section-saved-posts-stat {
     text-decoration: none;
     font-size: 0.95rem;
-    color: #d4af37;
+    color: var(--primary-gold, #d4af37);
     transition: all 0.3s ease;
-    padding: 6px 10px;
-    border-radius: 6px;
+    padding: 8px 12px;
+    border-radius: 8px;
     font-weight: 500;
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .profile-tab-section-saved-posts-stat .number {
@@ -253,9 +267,9 @@
 }
 
 .profile-tab-section-saved-posts-stat:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(212, 175, 55, 0.1);
     transform: scale(1.05);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
 }
 
 @media (max-width: 991px) {
@@ -395,23 +409,25 @@
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
-    border-radius: 1000px;
-    background: #FCB91E;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--secondary-orange, #fcb91e), var(--primary-gold, #d4af37));
     color: var(--text-color);
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
     color: var(--text-color);
     text-align: center;
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
+    border: none;
+    box-shadow: 0 2px 8px rgba(252, 185, 30, 0.3);
 }
 
 .profile-tab-section-saved-posts-follow-btn:hover {
-    background: #e0a814;
+    background: linear-gradient(135deg, #e0a814, #c99c2a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(252, 185, 30, 0.4);
 }
 
 

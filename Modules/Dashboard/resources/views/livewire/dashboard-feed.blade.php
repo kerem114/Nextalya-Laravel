@@ -17,7 +17,7 @@
 
     @if($feed->hasMorePages())
         <div class="text-center mt-5">
-            <button wire:click="loadMore" class="btn-primary-enhanced btn-enhanced" wire:loading.attr="disabled">
+            <button wire:click="loadMore" class="btn btn-primary" wire:loading.attr="disabled">
                 <span wire:loading.remove>
                     <i class="bi bi-arrow-down"></i>
                     Daha Fazla Yükle
@@ -37,7 +37,7 @@
             </div>
             <h5 class="modern-empty-title">Henüz içerik yok</h5>
             <p class="modern-empty-description">Takip ettiğin kişiler içerik paylaştığında burada görünecek</p>
-            <a href="{{ route('discover.index') }}" class="btn-primary-enhanced btn-enhanced">
+            <a href="{{ route('discover.index') }}" class="btn btn-primary">
                 <i class="bi bi-compass"></i>
                 Keşfetmeye Başla
             </a>

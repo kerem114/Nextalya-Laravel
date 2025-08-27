@@ -1,6 +1,6 @@
 <div class="p-0" wire:init="loadUsers">
     @foreach($this->users as $user)
-        <div class="card-enhanced p-3 mb-3 hover-lift-enhanced animate-fade-in" wire:key="user-{{ $user->id }}">
+        <div class="card-enhanced p-3 mb-3 hover-lift animate-fade-in" wire:key="user-{{ $user->id }}">
             <div class="d-flex align-items-center">
                 <a href="{{ route('user.account', $user->username) }}" class="text-decoration-none">
                     <img src="{{ asset('storage/' . $user->avatar) }}"
@@ -25,13 +25,13 @@
                 <div class="ms-auto">
                     @if(auth()->user()->isFollowing($user))
                         <button wire:click="unfollow({{ $user->id }})"
-                                class="btn-secondary-enhanced btn-enhanced btn-sm">
+                                class="btn btn-secondary btn-sm">
                             <i class="bi bi-check"></i>
                             Takip Ediliyor
                         </button>
                     @else
                         <button wire:click="follow({{ $user->id }})"
-                                class="btn-primary-enhanced btn-enhanced btn-sm">
+                                class="btn btn-primary btn-sm">
                             <i class="bi bi-plus"></i>
                             Takip Et
                         </button>

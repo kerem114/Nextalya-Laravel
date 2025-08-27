@@ -4,7 +4,7 @@
     <div class="form-container card animate-scale-in">
         <div class="text-center mb-4">
             <div class="homepage-logo mb-3" style="font-size: 2rem;">
-                <span class="text-dark">NEX</span><span class="text-gradient">TALYA</span>
+                <span class="text-dark">NEXT</span><span class="text-gradient">ALYA</span>
             </div>
             <h2 class="fw-bold">Hoşgeldiniz</h2>
             <p class="text-muted">Hesabınıza giriş yapın</p>
@@ -16,19 +16,25 @@
                 <label for="username" class="form-label fw-semibold">
                     <i class="bi bi-person me-2"></i>Kullanıcı Adı veya E-posta
                 </label>
-                <input type="text" id="username" name="login" class="form-control" value="{{ old('login') }}" placeholder="Kullanıcı adı veya email adresiniz"
+                <input type="text" id="username" name="login" class="form-control @error('login') is-invalid @enderror" value="{{ old('login') }}" placeholder="Kullanıcı adı veya email adresiniz"
                     required>
+                @error('login')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label fw-semibold">
                     <i class="bi bi-lock me-2"></i>Şifre
                 </label>
                 <div class="position-relative">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Şifrenizi girin" required>
+                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Şifrenizi girin" required>
                     <button type="button" class="position-absolute end-0 top-50 translate-middle-y me-3 border-0 bg-transparent" onclick="togglePassword()">
                         <i class="bi bi-eye" id="toggleIcon"></i>
                     </button>
                 </div>
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             
             <div class="d-flex justify-content-between align-items-center mb-4">

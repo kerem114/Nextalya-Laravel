@@ -4,7 +4,7 @@
     <div class="form-container card animate-scale-in">
         <div class="text-center mb-4">
             <div class="homepage-logo mb-3" style="font-size: 2rem;">
-                <span class="text-dark">NEX</span><span class="text-gradient">TALYA</span>
+                <span class="text-dark">NEXT</span><span class="text-gradient">ALYA</span>
             </div>
             <h2 class="fw-bold mb-2">Yeni hesap oluştur</h2>
             <p class="text-muted">Bilgileri doldurarak hesabınızı oluşturun</p>
@@ -20,20 +20,29 @@
                 <label for="name" class="form-label fw-semibold">
                     <i class="bi bi-person me-2"></i>Ad Soyad
                 </label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Adınız ve soyadınız" required>
+                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Adınız ve soyadınız" required>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label fw-semibold">
                     <i class="bi bi-envelope me-2"></i>E-posta Adresi
                 </label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="ornek@email.com" required>
+                <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="ornek@email.com" required>
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label fw-semibold">
                     <i class="bi bi-at me-2"></i>Kullanıcı Adı
                 </label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="kullaniciadi"
+                <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" placeholder="kullaniciadi"
                     required>
+                @error('username')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 <small class="text-muted">Bu, profilinizde görünecek benzersiz adınız olacak</small>
             </div>
             <div class="mb-3">
@@ -41,11 +50,14 @@
                     <i class="bi bi-lock me-2"></i>Şifre
                 </label>
                 <div class="position-relative">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Güçlü bir şifre oluşturun" required>
+                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Güçlü bir şifre oluşturun" required>
                     <button type="button" class="position-absolute end-0 top-50 translate-middle-y me-3 border-0 bg-transparent" onclick="togglePassword('password')">
                         <i class="bi bi-eye" id="toggleIcon1"></i>
                     </button>
                 </div>
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 <div class="mt-2">
                     <div class="progress" style="height: 6px;">
                         <div class="progress-bar" id="passwordStrength" style="width: 0%"></div>
