@@ -1,143 +1,162 @@
-@extends('auth.layout.app')
-@section('title') Kayıt ol @endsection
+@extends('layouts.auth')
+
+@section('title', 'Kayıt Ol - Nextalya')
+
 @section('content')
-    <div class="form-container card animate-scale-in">
-        <div class="text-center mb-4">
-            <div class="homepage-logo mb-3" style="font-size: 2rem;">
-                <span class="text-dark">NEXT</span><span class="text-gradient">ALYA</span>
-            </div>
-            <h2 class="fw-bold mb-2">Yeni hesap oluştur</h2>
-            <p class="text-muted">Bilgileri doldurarak hesabınızı oluşturun</p>
-            <div class="alert alert-success py-2 mb-3">
-                <i class="bi bi-gift me-1"></i>
-                İlk kullanıcılarımıza özel sürpriz avantajlar 🎁
-            </div>
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header text-center mb-4">
+            <h2 class="auth-logo">
+                <span class="text-dark">Next</span><span class="text-primary">alya</span>
+            </h2>
+            <p class="text-muted">Yeni hesap oluşturun</p>
         </div>
-        
-        <form action="{{ route('register') }}" method="POST">
+
+        <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label fw-semibold">
-                    <i class="bi bi-person me-2"></i>Ad Soyad
-                </label>
-                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Adınız ve soyadınız" required>
+            
+            <div class="form-group mb-3">
+                <label for="name" class="form-label">Ad Soyad</label>
+                <input type="text" 
+                       class="form-control @error('name') is-invalid @enderror" 
+                       id="name" 
+                       name="name" 
+                       value="{{ old('name') }}" 
+                       placeholder="Adınız ve soyadınız"
+                       required>
                 @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label fw-semibold">
-                    <i class="bi bi-envelope me-2"></i>E-posta Adresi
-                </label>
-                <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="ornek@email.com" required>
+
+            <div class="form-group mb-3">
+                <label for="username" class="form-label">Kullanıcı Adı</label>
+                <input type="text" 
+                       class="form-control @error('username') is-invalid @enderror" 
+                       id="username" 
+                       name="username" 
+                       value="{{ old('username') }}" 
+                       placeholder="Benzersiz kullanıcı adınız"
+                       required>
+                @error('username')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">E-posta Adresi</label>
+                <input type="email" 
+                       class="form-control @error('email') is-invalid @enderror" 
+                       id="email" 
+                       name="email" 
+                       value="{{ old('email') }}" 
+                       placeholder="ornek@email.com"
+                       required>
                 @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="username" class="form-label fw-semibold">
-                    <i class="bi bi-at me-2"></i>Kullanıcı Adı
-                </label>
-                <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" placeholder="kullaniciadi"
-                    required>
-                @error('username')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <small class="text-muted">Bu, profilinizde görünecek benzersiz adınız olacak</small>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label fw-semibold">
-                    <i class="bi bi-lock me-2"></i>Şifre
-                </label>
-                <div class="position-relative">
-                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Güçlü bir şifre oluşturun" required>
-                    <button type="button" class="position-absolute end-0 top-50 translate-middle-y me-3 border-0 bg-transparent" onclick="togglePassword('password')">
-                        <i class="bi bi-eye" id="toggleIcon1"></i>
+
+            <div class="form-group mb-3">
+                <label for="password" class="form-label">Şifre</label>
+                <div class="password-input-group">
+                    <input type="password" 
+                           class="form-control @error('password') is-invalid @enderror" 
+                           id="password" 
+                           name="password" 
+                           placeholder="Güçlü bir şifre oluşturun"
+                           required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <i class="bi bi-eye" id="passwordToggleIcon"></i>
                     </button>
+                </div>
+                <div class="password-strength mt-2">
+                    <div class="progress" style="height: 4px;">
+                        <div class="progress-bar" id="strengthBar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted" id="strengthText">Şifre gücü</small>
                 </div>
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-                <div class="mt-2">
-                    <div class="progress" style="height: 6px;">
-                        <div class="progress-bar" id="passwordStrength" style="width: 0%"></div>
-                    </div>
-                    <small class="text-muted" id="passwordStrengthText">Şifre gücü</small>
-                </div>
             </div>
-            <div class="mb-3">
-                <label for="confirm-password" class="form-label fw-semibold">
-                    <i class="bi bi-shield-check me-2"></i>Şifreyi Onaylayın
-                </label>
-                <div class="position-relative">
-                    <input type="password" id="password-confirm" name="password_confirmation" class="form-control"
-                    placeholder="Şifreyi onayla" required>
-                    <button type="button" class="position-absolute end-0 top-50 translate-middle-y me-3 border-0 bg-transparent" onclick="togglePassword('password-confirm')">
-                        <i class="bi bi-eye" id="toggleIcon2"></i>
+
+            <div class="form-group mb-4">
+                <label for="password_confirmation" class="form-label">Şifre Onayı</label>
+                <div class="password-input-group">
+                    <input type="password" 
+                           class="form-control" 
+                           id="password_confirmation" 
+                           name="password_confirmation" 
+                           placeholder="Şifrenizi tekrar girin"
+                           required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation')">
+                        <i class="bi bi-eye" id="confirmToggleIcon"></i>
                     </button>
                 </div>
             </div>
-            
+
             <button type="submit" class="btn btn-primary w-100 mb-3">
                 <i class="bi bi-person-plus me-2"></i>
                 Hesap Oluştur
             </button>
         </form>
-        
-        <div class="text-center">
-            <p class="text-muted mb-0">Zaten hesabınız var mı? 
+
+        <div class="auth-footer text-center">
+            <p class="mb-0">Zaten hesabınız var mı? 
                 <a href="{{ route('login') }}" class="text-decoration-none fw-semibold">
-                    Giriş Yap
+                    Giriş yapın
                 </a>
             </p>
         </div>
     </div>
+</div>
 
-    <script>
-        function togglePassword(inputId) {
-            const passwordInput = document.getElementById(inputId);
-            const toggleIcon = document.getElementById(inputId === 'password' ? 'toggleIcon1' : 'toggleIcon2');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.remove('bi-eye');
-                toggleIcon.classList.add('bi-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('bi-eye-slash');
-                toggleIcon.classList.add('bi-eye');
-            }
-        }
-        
-        // Password strength indicator
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const strengthBar = document.getElementById('passwordStrength');
-            const strengthText = document.getElementById('passwordStrengthText');
-            
-            let strength = 0;
-            let text = 'Çok zayıf';
-            
-            if (password.length >= 8) strength += 25;
-            if (/[A-Z]/.test(password)) strength += 25;
-            if (/[0-9]/.test(password)) strength += 25;
-            if (/[^A-Za-z0-9]/.test(password)) strength += 25;
-            
-            if (strength >= 75) text = 'Güçlü';
-            else if (strength >= 50) text = 'Orta';
-            else if (strength >= 25) text = 'Zayıf';
-            
-            strengthBar.style.width = strength + '%';
-            strengthText.textContent = text;
-            
-            if (strength >= 75) {
-                strengthBar.className = 'progress-bar bg-success';
-            } else if (strength >= 50) {
-                strengthBar.className = 'progress-bar bg-warning';
-            } else {
-                strengthBar.className = 'progress-bar bg-danger';
-            }
-        });
-    </script>
+<script>
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(inputId === 'password' ? 'passwordToggleIcon' : 'confirmToggleIcon');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+    }
+}
 
+// Password strength checker
+document.getElementById('password').addEventListener('input', function() {
+    const password = this.value;
+    const strengthBar = document.getElementById('strengthBar');
+    const strengthText = document.getElementById('strengthText');
+    
+    let strength = 0;
+    let text = 'Çok zayıf';
+    let color = 'bg-danger';
+    
+    if (password.length >= 8) strength += 25;
+    if (/[A-Z]/.test(password)) strength += 25;
+    if (/[0-9]/.test(password)) strength += 25;
+    if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+    
+    if (strength >= 75) {
+        text = 'Güçlü';
+        color = 'bg-success';
+    } else if (strength >= 50) {
+        text = 'Orta';
+        color = 'bg-warning';
+    } else if (strength >= 25) {
+        text = 'Zayıf';
+        color = 'bg-warning';
+    }
+    
+    strengthBar.className = `progress-bar ${color}`;
+    strengthBar.style.width = strength + '%';
+    strengthText.textContent = text;
+});
+</script>
 @endsection
